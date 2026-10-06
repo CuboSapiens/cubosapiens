@@ -10,3 +10,4 @@ dist
 .open-next
 sw.js
 workbox-*
+.vscode
