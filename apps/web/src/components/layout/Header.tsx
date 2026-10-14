@@ -85,12 +85,24 @@ const [loading, setLoading] = useState(false)
     }
   }, [menuOpen])
 
-  useEffect(() => {
-  fetch("https://api.github.com/repos/rk192324217/cubosapiens_world-tools")
-    .then(res => res.json())
+useEffect(() => {
+  fetch("https://api.github.com/repos/CuboSapiens/cubosapiens", {
+    headers: {
+      Accept: "application/vnd.github+json",
+    },
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(`GitHub API error: ${res.status}`);
+      }
+      return res.json();
+    })
     .then(data => setStars(data.stargazers_count))
-    .catch(() => setStars(null))
-}, [])
+    .catch((error) => {
+      console.error("Failed to fetch GitHub stars:", error);
+      setStars(null);
+    });
+}, []);
 useEffect(() => {
 
   if (!search.trim()) {
@@ -208,13 +220,13 @@ useEffect(() => {
           {/* ── RIGHT SIDE ── */}
           <div className="header-right flex items-center gap-3">
             <a
-           href="https://github.com/rk192324217/cubosapiens_world-tools"
+           href="https://github.com/CuboSapiens/cubosapiens"
            target="_blank"
            rel="noopener noreferrer"
-           className="flex items-center gap-1 px-2 py-1 rounded bg-black/40 hover:bg-black/60 text-white text-sm"
+           className="flex items-center gap-1 px-2 py-1 rounded text-white text-sm"
            >
            <i className="fa-solid fa-star text-yellow-400"></i>
-           <span>{stars !== null ? stars : "..."}</span>
+           <span>{stars !== null ? (stars < 1000 ? stars : (stars / 1000).toFixed(1) + "k") : "..."}</span>
            </a>
 
             {/* Desktop search bar */}

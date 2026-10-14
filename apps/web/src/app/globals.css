@@ -1288,7 +1288,7 @@ a {
   min-width: 0;
 }
 
-.game-iframe-wrap {
+.iframe-wrap {
   width: 100%;
   height: calc(100vh - 200px);
   min-height: 480px;
@@ -1298,6 +1298,27 @@ a {
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: #000;
   position: relative;
+  
+}
+.iframe-wrap.is-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;            
+  width: 100% ; 
+  height: 100%;
+  min-height: 0 ;           
+  max-height: none;         
+  border: none  ;
+  border-radius: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.iframe-wrap.is-fullscreen .game-iframe {
+  flex: 1;
+  min-height: 0;
+  height: auto;
 }
 
 .game-iframe {
@@ -1488,22 +1509,50 @@ a {
   display: flex;
   flex-direction: column;
 }
-
 .tool-fullscreen-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5rem;
+  z-index: 5;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 20px;
-  background: var(--bg-surface);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  flex-shrink: 0;
+  padding: 0 20px;
+
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.tool-fullscreen-bar:hover,
+.tool-fullscreen-bar:focus-within {
+  background: rgb(0, 0, 0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: rgba(255, 255, 255, 0.07);
+}
+.tool-fullscreen-name,
+.tool-fullscreen-exit {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease, border-color 0.15s, color 0.15s;
+}
+.tool-fullscreen-bar:hover .tool-fullscreen-name,
+.tool-fullscreen-bar:hover .tool-fullscreen-exit,
+.tool-fullscreen-bar:focus-within .tool-fullscreen-name,
+.tool-fullscreen-bar:focus-within .tool-fullscreen-exit {
+  opacity: 1;
+  visibility: visible;
 }
 
 .tool-fullscreen-name {
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: var(--brand);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -1514,19 +1563,20 @@ a {
   align-items: center;
   gap: 8px;
   padding: 7px 14px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(168, 159, 159, 0.05);
+  border: 1px solid rgb(255, 255, 255);
   border-radius: var(--radius-sm);
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 12px;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
   font-family: var(--font-body);
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s ease;
 }
 
 .tool-fullscreen-exit:hover {
   border-color: var(--brand);
   color: var(--brand);
+  font-size:18px;
 }
 
 .tool-fullscreen-exit kbd {
@@ -1541,9 +1591,23 @@ a {
 .tool-fullscreen-iframe {
   flex: 1;
   width: 100%;
+  min-height: 0;
   border: none;
 }
 
+
+@media (hover: none) {
+  .tool-fullscreen-bar {
+    background: rgba(15, 15, 15, 0.85);
+    border-bottom-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .tool-fullscreen-name,
+  .tool-fullscreen-exit {
+    opacity: 1;
+    visibility: visible;
+  }
+}
 
 /* =====================
    ABOUT PAGE
@@ -2064,7 +2128,7 @@ a {
     grid-template-columns: 1fr 1fr;
   }
 
-  .game-iframe-wrap {
+  .iframe-wrap {
     height: 55vw;
     min-height: 320px;
     max-height: 520px;
@@ -2129,7 +2193,7 @@ a {
 }
 
 @media (max-width: 480px) {
-  .game-iframe-wrap {
+  .iframe-wrap {
     height: 60vw;
     min-height: 280px;
   }
