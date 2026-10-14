@@ -7,6 +7,10 @@ export type ToolCategory =
   | "game"
   | "ai"
 
+export interface FAQ {
+  q: string;
+  a: string;
+}
 export interface Tool {
   id:          number
   name:        string
@@ -20,6 +24,14 @@ export interface Tool {
   usageCount:  number
   order:       number
   createdAt:   string
+  updatedAt: string
+  releaseDate: string
+  longDescription: string
+  ratingCount:number
+  faq: FAQ[]
+  devices:string
+  controls:string
+  contributorId:number
 }
 export interface Games{
   id:          number
@@ -34,6 +46,14 @@ export interface Games{
   playCount:  number
   order:       number
   createdAt:   string
+  updatedAt: string
+  releaseDate: string
+  longDescription: string
+  ratingCount:number
+  faq: FAQ[]
+  devices:string
+  controls:string
+  contributorId:number
 }
 
 export type BlogTag =

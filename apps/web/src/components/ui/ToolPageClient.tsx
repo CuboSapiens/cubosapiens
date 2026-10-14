@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import Link                                 from "next/link"
 import type { Tool }                        from "@/types"
 import Image from"next/image"
+import Recommended from "./Recommened"
 interface Props {
   tool:        Tool
   recommended: Tool[]
@@ -48,35 +49,17 @@ export default function ToolPageClient({ tool, recommended }: Props)
 
   return (
     <>
-      {/* Fullscreen overlay */}
-      {isFullscreen && (
-        <div className="tool-fullscreen">
-          <div className="tool-fullscreen-bar">
-            <span className="tool-fullscreen-name">{tool.name}
-            </span>
-            <button
-              className="tool-fullscreen-exit"
-              onClick={() => setIsFullscreen(false)}
-            >
-              ✕ Exit Fullscreen &nbsp;<kbd>Esc</kbd>
-            </button>
-          </div>
-          <iframe
-            src={tool.url}
-            className="tool-fullscreen-iframe"
-            title={tool.name}
-            allow="geolocation; camera"
-          />
-        </div>
-      )}
-
-      {/* Normal YouTube-style layout */}
       <div className="tool-page">
 
         {/* LEFT */}
         <div className="tool-page-main">
           {tool.isLive ? (
-            <div className="tool-iframe-wrap">
+           <div className={`iframe-wrap ${isFullscreen ? "is-fullscreen" : ""}`}>
+            {isFullscreen &&
+              <div className="tool-fullscreen-bar">
+                <span className="tool-fullscreen-name">{tool.name}</span>
+                <button className="tool-fullscreen-exit" onClick={() => setIsFullscreen(false)}>X</button>
+              </div>}
               <iframe
                 src={tool.url}
                 className="tool-iframe"
@@ -119,14 +102,14 @@ export default function ToolPageClient({ tool, recommended }: Props)
                     )}</div>
             <div className="tool-page-holder">
               <h1 className="tool-page-title">{tool.name}</h1>
-              <p className="tool-page-desc">{tool.description}</p>
+              <p className="tool-page-desc">{tool.longDescription}</p>
             </div>
             {tool.isLive && (
               <button
                 className="tool-open-btn"
                 onClick={() => setIsFullscreen(true)}
               >
-                ⛶ View Fullscreen
+                Fullscreen
               </button>
             )}
           </div>
@@ -134,44 +117,8 @@ export default function ToolPageClient({ tool, recommended }: Props)
 
         {/* RIGHT — sidebar */}
         <aside className="tool-page-sidebar">
-
-          <h3 className="sidebar-title">Recommended Tools</h3>
-
-          <div className="recommended-list">
-            {recommended.map(rec => (
-              <Link
-                key={rec.id}
-                href={`/tools/${rec.slug}`}
-                className="recommended-card"
-              >
-                <div className="recommended-icon">{rec.icon.endsWith(".png") || rec.icon.endsWith(".svg") ? (
-                      <Image
-                        src={`/icons/${rec.icon}`}
-                        alt={rec.name}
-                        className="recommended-icon "
-                        width={48}
-                        height={48}
-                        unoptimized
-                        // style={{ objectFit: "contain" }}
-                      />
-                    ) : (
-                      <span>{rec.icon}</span>
-                    )}</div>
-                <div className="recommended-info">
-                  <p className="recommended-name">{rec.name}</p>
-                  <p className="recommended-desc">
-                    {rec.description.length > 40
-                      ? rec.description.slice(0, 40) + "…"
-                      : rec.description}
-                  </p>
-                </div>
-                {rec.isLive && <span className="recommended-live">LIVE</span>}
-              </Link>
-            ))}
-          </div>
-
+            <Recommended recommended ={recommended} isTool={true}/>
         </aside>
-
       </div>
     </>
   )
