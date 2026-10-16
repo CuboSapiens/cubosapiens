@@ -77,27 +77,29 @@
 
 ## Connect With CuboSapiens
 
+
 <p align="center">
-  <a href="https://github.com/rk192324217/cubosapiens_world-tools">
-    <img src="https://skillicons.dev/icons?i=github" height="50">
+  <a href="https://github.com/CuboSapiens/cubosapiens/" target="_blank" rel="noopener noreferrer">
+    <img src="https://skillicons.dev/icons?i=github" alt="GitHub" height="50">
   </a>
-
-  <a href="https://www.linkedin.com/company/117084639">
-    <img src="https://skillicons.dev/icons?i=linkedin" height="50">
+  &nbsp;
+  <a href="https://www.linkedin.com/company/117084639" target="_blank" rel="noopener noreferrer">
+    <img src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" height="50">
   </a>
-
-  <a href="https://www.instagram.com/cubosapiens/">
-    <img src="https://skillicons.dev/icons?i=instagram" height="50">
+  &nbsp;
+  <a href="https://www.instagram.com/cubosapiens/" target="_blank" rel="noopener noreferrer">
+    <img src="https://skillicons.dev/icons?i=instagram" alt="Instagram" height="50">
   </a>
-
-  <a href="https://www.youtube.com/channel/UCsG60rRXZ302vmYDYg4j97g">
-    <img src="https://skillicons.dev/icons?i=youtube" height="50">
+  &nbsp;
+  <a href="https://www.youtube.com/channel/UCsG60rRXZ302vmYDYg4j97g" target="_blank" rel="noopener noreferrer">
+    <img src="https://cdn.simpleicons.org/youtube/FF0000" alt="YouTube" height="50">
   </a>
-
+  &nbsp;
   <a href="mailto:cubosapiens@gmail.com">
-    <img src="https://skillicons.dev/icons?i=gmail" height="50">
+    <img src="https://cdn.simpleicons.org/gmail/EA4335" alt="Gmail" height="50">
   </a>
 </p>
+
 
 ---
 
