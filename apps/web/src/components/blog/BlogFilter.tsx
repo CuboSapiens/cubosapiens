@@ -21,7 +21,7 @@ const CATEGORIES: { key: string; label: string }[] = [
 
 // Points contributors to the PR workflow instead of a form page.
 const CONTRIBUTE_URL =
-  "https://github.com/rk192324217/cubosapiens_world-tools/blob/main/CONTRIBUTING.md#writing-a-blog-post"
+  "https://github.com/CuboSapiens/cubosapiens/blob/main/CONTRIBUTING.md#writing-a-blog-post"
 
 interface Props {
   blogs: BlogPost[]
@@ -59,7 +59,9 @@ export default function BlogFilter({ blogs }: Props) {
 
       {/* Grid */}
       <div className="blog-grid">
-
+        {filtered.map(blog => (
+          <BlogCard key={blog.slug} blog={blog} />
+        ))}
         {/* Contribute CTA — links to CONTRIBUTING.md PR guide */}
         <a
           href={CONTRIBUTE_URL}
@@ -70,10 +72,6 @@ export default function BlogFilter({ blogs }: Props) {
           <span className="blog-new-plus">+</span>
           <span className="blog-new-label">Contribute a blog via PR</span>
         </a>
-
-        {filtered.map(blog => (
-          <BlogCard key={blog.slug} blog={blog} />
-        ))}
 
       </div>
 

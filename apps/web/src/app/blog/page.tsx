@@ -37,19 +37,7 @@ export default function BlogPage() {
 
   return (
     <div className="page-container">
-
-      {/* Page hero */}
-      <div className="page-hero">
-        <span className="section-tag">Community articles</span>
-        <h1 className="page-hero-title">Blog</h1>
-        <p className="page-hero-sub">
-          Technical write-ups, OSS learnings, guides and engineering stories from the community.
-        </p>
-      </div>
-
-      {/* Client filter + grid — all blog data passed as prop, no fetch */}
       <BlogFilter blogs={blogs} />
-
     </div>
   )
 }
